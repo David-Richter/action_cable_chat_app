@@ -47,13 +47,8 @@ a
     max-height: 0
     padding: 0 40px
 
-.fadeOutUp
-  -webkit-animation-name: fadeOutUp
-  animation-name: fadeOutUp
-
-@-webkit-keyframes fadeOutUpBig
+@keyframes fadeOutUpBig
   0%
-    opacity: 1
     -webkit-transform: translateY(0)
     transform: translateY(0)
   100%
@@ -61,6 +56,9 @@ a
     -webkit-transform: translateY(-2000px)
     transform: translateY(-2000px)
 
+.fadeOutUp
+  -webkit-animation-name: fadeOutUp
+  animation-name: fadeOutUp
 
 .header
   margin-bottom: 30px
@@ -105,17 +103,6 @@ a
     &:hover
       color: #e67642
       box-shadow: 0 -1px 0 0 rgba(#e67642,0.3) inset, 0 2px 0 0 rgba(#e67642,0.3)
-
-
-// a
-//   box-shadow: 0 -1px 0 0 rgba(#fcfaf5,0.3) inset, 0 2px 0 0 rgba(#fcfaf5,0.3)
-//   color: #fcfaf5
-//   font-size: 0.9em
-//   letter-spacing: 0.05em
-//   text-decoration: none
-//   text-transform: uppercase
-//   text-shadow: 0 1px 0 #4b6680, 1px 1px 0 #4b6680, -1px 1px 0 #4b6680, -2px 1px 0 #4b6680, 2px 1px 0 #4b6680
-//   transition: all 0.2s ease-in-out
 
 textarea,
 select,
@@ -230,7 +217,6 @@ button, input[type="submit"]
   line-height: 1.6
   &:last-child
     margin-bottom: 10px
-  display: table-row
   &:nth-child(2n) div ~ div
   > div
     display: table-cell
@@ -240,6 +226,14 @@ button, input[type="submit"]
   color: #666
   font-size: 13px
   margin-right: 10px
+  vertical-align: top
+
+code
+  font-family: monospace
+  white-space: pre-wrap
+  padding: 9px 15px
+  display: inline-block
+  background-color: #eee
 
 .message-content
   width: 100%
@@ -253,9 +247,6 @@ button, input[type="submit"]
     height: 100%
   textarea
     height: 100%
-    width: 84.5%
+    width: 100%
   input
-    float: right
-    height: 100%
-    vertical-align: top
-    width: 14.5%
+    display: none
