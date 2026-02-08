@@ -1,0 +1,141 @@
+<div class="criteria-form-page">
+  <div class="page-header">
+    <h1>Suchkriterien</h1>
+    <p>Definiere, wonach du suchst. Diese Kriterien bestimmen, welche Angebote dir empfohlen werden.</p>
+    <div class="header-actions">
+      <%= link_to 'Zur&uuml;ck zum Dashboard'.html_safe, dashboard_properties_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+
+  <%= form_for @criteria, url: search_criteria_path, method: :patch, html: { class: 'criteria-form' } do |f| %>
+
+    <% if @criteria.errors.any? %>
+      <div class="form-errors">
+        <h3><%= @criteria.errors.count %> Fehler gefunden:</h3>
+        <ul>
+          <% @criteria.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-section">
+      <h2>Angebotstyp</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Typ</label>
+          <%= f.select :offer_type, [['Miete', 'rent'], ['Kauf', 'buy']], {}, class: 'form-input' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Preisrahmen</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Min. Kaltmiete (&euro;)</label>
+          <%= f.number_field :min_price, step: 50, min: 0, class: 'form-input', placeholder: 'z.B. 400' %>
+        </div>
+        <div class="form-group">
+          <label>Max. Kaltmiete (&euro;)</label>
+          <%= f.number_field :max_price, step: 50, min: 0, class: 'form-input', placeholder: 'z.B. 1200' %>
+        </div>
+        <div class="form-group">
+          <label>Max. Warmmiete (&euro;)</label>
+          <%= f.number_field :max_total_rent, step: 50, min: 0, class: 'form-input', placeholder: 'z.B. 1500' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Gr&ouml;&szlig;e &amp; Zimmer</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Min. Wohnfl&auml;che (m&sup2;)</label>
+          <%= f.number_field :min_living_space, step: 5, min: 0, class: 'form-input', placeholder: 'z.B. 50' %>
+        </div>
+        <div class="form-group">
+          <label>Max. Wohnfl&auml;che (m&sup2;)</label>
+          <%= f.number_field :max_living_space, step: 5, min: 0, class: 'form-input', placeholder: 'z.B. 100' %>
+        </div>
+        <div class="form-group">
+          <label>Min. Zimmer</label>
+          <%= f.select :min_rooms, [['Egal', ''], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], {}, class: 'form-input' %>
+        </div>
+        <div class="form-group">
+          <label>Max. Zimmer</label>
+          <%= f.select :max_rooms, [['Egal', ''], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5+', 5]], {}, class: 'form-input' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Bevorzugte Bezirke</h2>
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label>Bevorzugte Bezirke (kommagetrennt)</label>
+          <%= f.text_field :preferred_districts, class: 'form-input', placeholder: 'z.B. Mitte, Pankow, Friedrichshain-Kreuzberg' %>
+          <span class="form-hint">Verf&uuml;gbar: <%= Property::BERLIN_DISTRICTS.join(', ') %></span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label>Ausgeschlossene Bezirke (kommagetrennt)</label>
+          <%= f.text_field :excluded_districts, class: 'form-input', placeholder: 'z.B. Spandau, Marzahn-Hellersdorf' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Ausstattung</h2>
+      <div class="form-row checkboxes">
+        <div class="form-group checkbox-group">
+          <%= f.check_box :require_balcony, class: 'form-checkbox' %>
+          <label>Balkon erforderlich</label>
+        </div>
+        <div class="form-group checkbox-group">
+          <%= f.check_box :require_elevator, class: 'form-checkbox' %>
+          <label>Aufzug erforderlich</label>
+        </div>
+        <div class="form-group checkbox-group">
+          <%= f.check_box :require_parking, class: 'form-checkbox' %>
+          <label>Stellplatz erforderlich</label>
+        </div>
+        <div class="form-group checkbox-group">
+          <%= f.check_box :require_garden, class: 'form-checkbox' %>
+          <label>Garten erforderlich</label>
+        </div>
+        <div class="form-group checkbox-group">
+          <%= f.check_box :pets_needed, class: 'form-checkbox' %>
+          <label>Haustiere erlaubt</label>
+        </div>
+        <div class="form-group checkbox-group">
+          <%= f.check_box :accept_wbs, class: 'form-checkbox' %>
+          <label>WBS-Wohnungen einschlie&szlig;en</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Bewertung &amp; Benachrichtigungen</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Mindest-Score f&uuml;r Empfehlungen</label>
+          <%= f.number_field :min_score_threshold, step: 5, min: 0, max: 100, class: 'form-input', placeholder: '60' %>
+          <span class="form-hint">Angebote &uuml;ber diesem Score werden empfohlen (0-100)</span>
+        </div>
+        <div class="form-group checkbox-group" style="align-self: center;">
+          <%= f.check_box :notifications_enabled, class: 'form-checkbox' %>
+          <label>Echtzeit-Benachrichtigungen aktivieren</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit 'Suchkriterien speichern', class: 'btn btn-primary' %>
+      <%= link_to 'Abbrechen', dashboard_properties_path, class: 'btn btn-secondary' %>
+    </div>
+
+  <% end %>
+</div>

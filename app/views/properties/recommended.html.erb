@@ -1,0 +1,24 @@
+<div class="properties-index">
+  <div class="page-header">
+    <h1>Empfohlene Angebote</h1>
+    <p>Diese Angebote haben den h&ouml;chsten Score und passen zu deinen Suchkriterien.</p>
+    <div class="header-actions">
+      <%= link_to 'Dashboard', dashboard_properties_path, class: 'btn btn-secondary' %>
+      <%= link_to 'Alle Angebote', properties_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+
+  <div class="property-cards">
+    <% @properties.each do |property| %>
+      <%= render 'properties/property_card', property: property %>
+    <% end %>
+  </div>
+
+  <% if @properties.empty? %>
+    <div class="empty-state">
+      <h2>Keine Empfehlungen</h2>
+      <p>Starte ein Screening oder passe deine Suchkriterien an.</p>
+      <%= link_to 'Screening starten', screen_properties_path, method: :post, class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

@@ -2,7 +2,10 @@
   <a href="/" class="header-logo"><%= render 'layouts/logo' %></a>
   <ul class="header-nav">
     <% if logged_in? %>
-    <li><%= link_to "Sign out", logout_path, method: :delete %>
+    <li><%= link_to "Chat", messages_path %></li>
+    <li><%= link_to "Immobilien", dashboard_properties_path %></li>
+    <li><%= link_to "Empfehlungen", recommended_properties_path %></li>
+    <li><%= link_to "Sign out", logout_path, method: :delete %></li>
     <% end %>
   </ul>
 </header>

@@ -1,0 +1,189 @@
+<div class="property-detail">
+  <div class="detail-header">
+    <div class="back-link">
+      <%= link_to '&larr; Zur&uuml;ck zur &Uuml;bersicht'.html_safe, properties_path %>
+    </div>
+
+    <div class="detail-title-row">
+      <h1><%= @property.title %></h1>
+      <div class="score-badge-large" style="background-color: <%= @property.score_color %>">
+        <div class="score-number"><%= @property.overall_score.round(0) %></div>
+        <div class="score-text"><%= @property.score_label %></div>
+      </div>
+    </div>
+
+    <% if @property.recommended %>
+      <div class="recommendation-banner">Empfohlenes Angebot</div>
+    <% end %>
+  </div>
+
+  <div class="detail-grid">
+    <div class="detail-main">
+      <div class="detail-section">
+        <h2>&Uuml;bersicht</h2>
+        <div class="detail-overview">
+          <div class="overview-item">
+            <div class="overview-label">Kaltmiete</div>
+            <div class="overview-value"><%= @property.price&.round(0) %> &euro;/Monat</div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Warmmiete</div>
+            <div class="overview-value highlight"><%= @property.warm_rent.round(0) %> &euro;/Monat</div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Wohnfl&auml;che</div>
+            <div class="overview-value"><%= @property.living_space&.round(1) %> m&sup2;</div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Zimmer</div>
+            <div class="overview-value"><%= @property.rooms %></div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Preis/m&sup2;</div>
+            <div class="overview-value"><%= @property.price_per_sqm&.round(2) %> &euro;</div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Nebenkosten</div>
+            <div class="overview-value"><%= @property.additional_costs&.round(0) %> &euro;</div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Heizkosten</div>
+            <div class="overview-value"><%= @property.heating_costs&.round(0) %> &euro;</div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Kaution</div>
+            <div class="overview-value"><%= @property.deposit&.round(0) %> &euro;</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h2>Lage</h2>
+        <div class="detail-overview">
+          <div class="overview-item">
+            <div class="overview-label">Bezirk</div>
+            <div class="overview-value"><%= @property.district %></div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Stadtteil</div>
+            <div class="overview-value"><%= @property.neighborhood %></div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Adresse</div>
+            <div class="overview-value"><%= @property.address %></div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">PLZ</div>
+            <div class="overview-value"><%= @property.zip_code %></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h2>Details</h2>
+        <div class="detail-overview">
+          <div class="overview-item">
+            <div class="overview-label">Typ</div>
+            <div class="overview-value"><%= @property.property_type %></div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Etage</div>
+            <div class="overview-value"><%= @property.floor %>. OG von <%= @property.total_floors %></div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Baujahr</div>
+            <div class="overview-value"><%= @property.construction_year %></div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Zustand</div>
+            <div class="overview-value"><%= @property.condition %></div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Heizung</div>
+            <div class="overview-value"><%= @property.heating_type %></div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Energieausweis</div>
+            <div class="overview-value"><%= @property.energy_rating %></div>
+          </div>
+          <div class="overview-item">
+            <div class="overview-label">Verf&uuml;gbar ab</div>
+            <div class="overview-value"><%= @property.available_from&.strftime('%d.%m.%Y') %></div>
+          </div>
+          <% if @property.wbs_required %>
+          <div class="overview-item">
+            <div class="overview-label">WBS</div>
+            <div class="overview-value warning">WBS erforderlich</div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h2>Ausstattung</h2>
+        <div class="features-grid">
+          <div class="feature-item <%= 'active' if @property.balcony %>">Balkon</div>
+          <div class="feature-item <%= 'active' if @property.garden %>">Garten</div>
+          <div class="feature-item <%= 'active' if @property.elevator %>">Aufzug</div>
+          <div class="feature-item <%= 'active' if @property.cellar %>">Keller</div>
+          <div class="feature-item <%= 'active' if @property.parking %>">Stellplatz</div>
+          <div class="feature-item <%= 'active' if @property.furnished %>">M&ouml;bliert</div>
+          <div class="feature-item <%= 'active' if @property.pets_allowed %>">Haustiere</div>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h2>Beschreibung</h2>
+        <p class="description-text"><%= @property.description %></p>
+      </div>
+
+      <% if @property.contact_name.present? %>
+      <div class="detail-section">
+        <h2>Kontakt</h2>
+        <p><strong><%= @property.contact_name %></strong></p>
+        <% if @property.contact_phone.present? %>
+          <p><%= @property.contact_phone %></p>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="detail-sidebar">
+      <% if @score %>
+      <div class="score-card">
+        <h2>Bewertung</h2>
+
+        <% if @score.summary.present? %>
+          <p class="score-summary"><%= @score.summary %></p>
+        <% end %>
+
+        <div class="score-breakdown">
+          <% @score.score_breakdown.each do |category, data| %>
+            <div class="score-row">
+              <div class="score-category">
+                <span class="category-name"><%= category %></span>
+                <span class="category-weight"><%= data[:weight] %></span>
+              </div>
+              <div class="score-bar-container">
+                <div class="score-bar" style="width: <%= [data[:score].to_f, 100].min %>%; background-color: <%= score_bar_color(data[:score]) %>">
+                </div>
+                <span class="score-value"><%= data[:score]&.round(1) %></span>
+              </div>
+              <% if data[:notes].present? %>
+                <p class="score-note"><%= data[:notes] %></p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+
+      <div class="source-info">
+        <p>Quelle: <strong><%= @property.source %></strong></p>
+        <% if @property.listed_at %>
+          <p>Online seit: <%= @property.listed_at.strftime('%d.%m.%Y %H:%M') %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

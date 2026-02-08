@@ -6,5 +6,15 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  # Berlin Property Screener
+  resources :properties, only: [:index, :show] do
+    collection do
+      get  :dashboard
+      get  :recommended
+      post :screen
+    end
+  end
+  resource :search_criteria, only: [:edit, :update]
+
   mount ActionCable.server, at: '/cable'
 end

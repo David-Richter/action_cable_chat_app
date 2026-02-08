@@ -1,0 +1,54 @@
+<div class="property-card">
+  <div class="property-card-header">
+    <div class="score-badge" style="background-color: <%= property.score_color %>">
+      <%= property.overall_score.round(0) %>
+    </div>
+    <div class="score-label"><%= property.score_label %></div>
+    <% if property.recommended %>
+      <span class="recommended-badge">Empfohlen</span>
+    <% end %>
+  </div>
+
+  <div class="property-card-body">
+    <h3 class="property-title">
+      <%= link_to property.title, property_path(property) %>
+    </h3>
+
+    <div class="property-meta">
+      <span class="meta-item"><strong><%= property.price&.round(0) %> &euro;</strong>/Monat</span>
+      <span class="meta-item"><%= property.living_space&.round(1) %> m&sup2;</span>
+      <span class="meta-item"><%= property.rooms %> Zi.</span>
+      <span class="meta-item"><%= property.district %></span>
+    </div>
+
+    <div class="property-details">
+      <span class="detail"><%= property.neighborhood %></span>
+      <% if property.floor %>
+        <span class="detail"><%= property.floor %>. OG</span>
+      <% end %>
+      <span class="detail"><%= property.price_per_sqm&.round(2) %> &euro;/m&sup2;</span>
+    </div>
+
+    <% if property.features_list.any? %>
+      <div class="property-features">
+        <% property.features_list.first(4).each do |feature| %>
+          <span class="feature-tag"><%= feature %></span>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="property-warm-rent">
+      Warmmiete: <strong><%= property.warm_rent.round(0) %> &euro;</strong>
+    </div>
+  </div>
+
+  <div class="property-card-footer">
+    <span class="source-tag"><%= property.source %></span>
+    <span class="listed-date">
+      <% if property.listed_at %>
+        vor <%= time_ago_in_words(property.listed_at) %>
+      <% end %>
+    </span>
+    <%= link_to 'Details', property_path(property), class: 'btn-detail' %>
+  </div>
+</div>

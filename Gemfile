@@ -1,40 +1,39 @@
 source 'https://rubygems.org'
 
-gem 'rails',                   '5.0.7.2'
-gem 'bcrypt',                  '3.1.13'
-gem 'faker',                   '1.6.6'
-gem 'puma',                    '4.3.1'
-gem 'sass-rails',              '5.0.6'
-gem 'uglifier',                '3.0.0'
-gem 'coffee-rails',            '4.2.1'
-gem 'jquery-rails',            '4.1.1'
-gem 'turbolinks',              '5.0.0'
-gem 'jbuilder',                '2.4.1'
-gem 'kramdown',                '1.12.0'
-gem 'redis',                   '3.3.1'
+ruby '3.3.6'
+
+gem 'rails',                   '~> 7.1.0'
+gem 'bcrypt',                  '~> 3.1'
+gem 'faker',                   '~> 3.2'
+gem 'puma',                    '~> 6.4'
+gem 'sprockets-rails'
+gem 'sass-rails',              '~> 6.0'
+gem 'terser'
+gem 'coffee-rails',            '~> 5.0'
+gem 'jquery-rails'
+gem 'turbolinks',              '~> 5.2'
+gem 'jbuilder',                '~> 2.11'
+gem 'kramdown',                '~> 2.4'
+gem 'redis',                   '~> 5.0'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.13'
-  gem 'byebug',  '9.0.0', platform: :mri
+  gem 'sqlite3', '~> 1.7'
+  gem 'debug', platforms: [:mri]
 end
 
 group :development do
-  gem 'web-console',           '3.1.1'
-  gem 'listen',                '3.0.8'
-  gem 'spring',                '1.7.2'
-  gem 'spring-watcher-listen', '2.0.0'
+  gem 'web-console'
+  gem 'listen'
 end
 
 group :test do
-  gem 'rails-controller-testing', '0.1.1'
-  gem 'minitest-reporters',       '1.1.9'
-  gem 'guard',                    '2.13.0'
-  gem 'guard-minitest',           '2.4.4'
+  gem 'rails-controller-testing'
+  gem 'minitest-reporters'
 end
 
 group :production do
-  gem 'pg', '0.19.0'
+  gem 'pg', '~> 1.5'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'bootsnap', require: false

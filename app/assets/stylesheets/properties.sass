@@ -1,0 +1,665 @@
+// Berlin Property Screener Styles
+
+// Variables
+$primary: #2c3e50
+$accent: #3498db
+$success: #2ecc71
+$warning: #f39c12
+$danger: #e74c3c
+$light-bg: #f8f9fa
+$white: #ffffff
+$text: #333333
+$text-light: #666666
+$border: #e0e0e0
+
+// Dashboard
+.property-dashboard
+  max-width: 1200px
+  margin: 0 auto
+  padding: 20px
+
+.dashboard-header
+  text-align: center
+  margin-bottom: 40px
+  h1
+    color: $primary
+    font-size: 32px
+    margin-bottom: 8px
+
+.dashboard-subtitle
+  color: $text-light
+  font-size: 16px
+  margin-bottom: 20px
+
+.dashboard-actions
+  display: flex
+  gap: 10px
+  justify-content: center
+
+// Buttons
+.btn
+  display: inline-block
+  padding: 10px 20px
+  border: none
+  cursor: pointer
+  font-size: 13px
+  letter-spacing: 0.05em
+  text-transform: uppercase
+  text-decoration: none
+  transition: all 0.2s ease
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1)
+
+.btn-primary
+  background-color: $accent
+  color: $white
+  &:hover
+    background-color: darken($accent, 10%)
+
+.btn-secondary
+  background-color: $white
+  color: $primary
+  border: 1px solid $border
+  &:hover
+    background-color: $light-bg
+
+.btn-detail
+  font-size: 11px
+  color: $accent
+  text-decoration: none
+  text-transform: uppercase
+  letter-spacing: 0.05em
+  &:hover
+    color: darken($accent, 15%)
+
+// Stats Grid
+.stats-grid
+  display: flex
+  gap: 15px
+  margin-bottom: 30px
+  flex-wrap: wrap
+
+.stat-card
+  flex: 1
+  min-width: 140px
+  background: $white
+  padding: 20px
+  text-align: center
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08)
+
+.stat-highlight
+  background: $accent
+  .stat-number, .stat-label
+    color: $white
+
+.stat-number
+  font-size: 28px
+  font-weight: bold
+  color: $primary
+  margin-bottom: 5px
+
+.stat-label
+  font-size: 12px
+  color: $text-light
+  text-transform: uppercase
+  letter-spacing: 0.05em
+
+// Criteria Summary
+.criteria-summary
+  background: $light-bg
+  padding: 20px
+  margin-bottom: 30px
+  h3
+    font-size: 14px
+    color: $primary
+    margin-bottom: 10px
+
+.criteria-tags
+  display: flex
+  flex-wrap: wrap
+  gap: 8px
+
+.tag
+  background: $white
+  border: 1px solid $accent
+  color: $accent
+  padding: 4px 12px
+  font-size: 12px
+
+// Section
+.section
+  margin-bottom: 40px
+
+.section-header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 20px
+  h2
+    font-size: 22px
+    color: $primary
+
+.section-link
+  color: $accent
+  text-decoration: none
+  font-size: 13px
+  &:hover
+    color: darken($accent, 15%)
+
+// Property Cards
+.property-cards
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr))
+  gap: 20px
+
+.property-card
+  background: $white
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08)
+  transition: transform 0.2s ease, box-shadow 0.2s ease
+  &:hover
+    transform: translateY(-2px)
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12)
+
+.property-card-header
+  display: flex
+  align-items: center
+  gap: 10px
+  padding: 15px 15px 0
+
+.score-badge
+  width: 42px
+  height: 42px
+  border-radius: 50%
+  display: flex
+  align-items: center
+  justify-content: center
+  color: $white
+  font-weight: bold
+  font-size: 16px
+  flex-shrink: 0
+
+.score-label
+  font-size: 12px
+  color: $text-light
+
+.recommended-badge
+  margin-left: auto
+  background: $success
+  color: $white
+  padding: 3px 10px
+  font-size: 10px
+  text-transform: uppercase
+  letter-spacing: 0.05em
+
+.property-card-body
+  padding: 12px 15px
+
+.property-title
+  font-size: 15px
+  margin-bottom: 10px
+  a
+    color: $primary
+    text-decoration: none
+    &:hover
+      color: $accent
+
+.property-meta
+  display: flex
+  flex-wrap: wrap
+  gap: 12px
+  margin-bottom: 8px
+  font-size: 13px
+  color: $text
+
+.meta-item strong
+  color: $primary
+
+.property-details
+  display: flex
+  gap: 12px
+  margin-bottom: 10px
+
+.detail
+  font-size: 12px
+  color: $text-light
+
+.property-features
+  display: flex
+  flex-wrap: wrap
+  gap: 6px
+  margin-bottom: 10px
+
+.feature-tag
+  background: $light-bg
+  padding: 2px 8px
+  font-size: 11px
+  color: $text-light
+
+.property-warm-rent
+  font-size: 13px
+  color: $text-light
+  padding-top: 8px
+  border-top: 1px solid $border
+
+.property-card-footer
+  display: flex
+  align-items: center
+  gap: 10px
+  padding: 10px 15px
+  background: $light-bg
+  font-size: 12px
+
+.source-tag
+  background: $primary
+  color: $white
+  padding: 2px 8px
+  font-size: 10px
+  text-transform: uppercase
+
+.listed-date
+  color: $text-light
+  font-size: 11px
+  flex: 1
+
+// Properties Index
+.properties-index
+  max-width: 1200px
+  margin: 0 auto
+  padding: 20px
+
+.page-header
+  margin-bottom: 30px
+  h1
+    font-size: 28px
+    color: $primary
+    margin-bottom: 8px
+  p
+    color: $text-light
+    font-size: 14px
+
+.header-stats
+  display: flex
+  gap: 20px
+  font-size: 13px
+  color: $text-light
+  margin-bottom: 15px
+  span
+    padding: 4px 12px
+    background: $light-bg
+
+.header-actions
+  display: flex
+  gap: 10px
+
+// Filters
+.filters-bar
+  background: $white
+  padding: 20px
+  margin-bottom: 25px
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06)
+
+.filter-form
+  display: flex
+  flex-wrap: wrap
+  gap: 15px
+  align-items: flex-end
+
+.filter-group
+  flex: 1
+  min-width: 130px
+  label
+    display: block
+    font-size: 11px
+    color: $text-light
+    text-transform: uppercase
+    letter-spacing: 0.05em
+    margin-bottom: 5px
+
+.filter-select
+  width: 100%
+  padding: 8px
+  border: 1px solid $border
+  font-size: 13px
+  background: $white
+
+.filter-submit
+  padding: 8px 20px
+
+// Property Detail
+.property-detail
+  max-width: 1200px
+  margin: 0 auto
+  padding: 20px
+
+.back-link
+  margin-bottom: 20px
+  a
+    color: $accent
+    text-decoration: none
+    font-size: 13px
+    &:hover
+      color: darken($accent, 15%)
+
+.detail-title-row
+  display: flex
+  justify-content: space-between
+  align-items: flex-start
+  margin-bottom: 20px
+  h1
+    font-size: 26px
+    color: $primary
+    flex: 1
+
+.score-badge-large
+  width: 80px
+  height: 80px
+  border-radius: 50%
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  color: $white
+  flex-shrink: 0
+
+.score-number
+  font-size: 28px
+  font-weight: bold
+
+.score-text
+  font-size: 10px
+  text-transform: uppercase
+
+.recommendation-banner
+  background: $success
+  color: $white
+  padding: 10px 20px
+  font-size: 14px
+  font-weight: bold
+  text-align: center
+  margin-bottom: 25px
+
+.detail-grid
+  display: grid
+  grid-template-columns: 1fr 380px
+  gap: 30px
+
+.detail-section
+  background: $white
+  padding: 25px
+  margin-bottom: 20px
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06)
+  h2
+    font-size: 18px
+    color: $primary
+    margin-bottom: 15px
+    padding-bottom: 10px
+    border-bottom: 2px solid $light-bg
+
+.detail-overview
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: 15px
+
+.overview-item
+  padding: 8px 0
+
+.overview-label
+  font-size: 11px
+  color: $text-light
+  text-transform: uppercase
+  letter-spacing: 0.05em
+  margin-bottom: 3px
+
+.overview-value
+  font-size: 15px
+  color: $text
+  &.highlight
+    color: $accent
+    font-weight: bold
+  &.warning
+    color: $danger
+
+.features-grid
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: 10px
+
+.feature-item
+  padding: 10px
+  text-align: center
+  font-size: 13px
+  background: $light-bg
+  color: $text-light
+  &.active
+    background: lighten($success, 35%)
+    color: darken($success, 15%)
+    font-weight: bold
+
+.description-text
+  font-size: 14px
+  line-height: 1.7
+  color: $text
+
+// Score Card (Sidebar)
+.score-card
+  background: $white
+  padding: 25px
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08)
+  margin-bottom: 20px
+  h2
+    font-size: 18px
+    color: $primary
+    margin-bottom: 15px
+
+.score-summary
+  font-size: 14px
+  color: $text
+  margin-bottom: 20px
+  padding: 12px
+  background: $light-bg
+  line-height: 1.5
+
+.score-breakdown
+  display: flex
+  flex-direction: column
+  gap: 15px
+
+.score-row
+  padding-bottom: 12px
+  border-bottom: 1px solid $light-bg
+
+.score-category
+  display: flex
+  justify-content: space-between
+  margin-bottom: 6px
+
+.category-name
+  font-size: 13px
+  font-weight: bold
+  color: $primary
+
+.category-weight
+  font-size: 11px
+  color: $text-light
+
+.score-bar-container
+  position: relative
+  height: 20px
+  background: $light-bg
+  margin-bottom: 5px
+
+.score-bar
+  height: 100%
+  transition: width 0.5s ease
+
+.score-value
+  position: absolute
+  right: 8px
+  top: 2px
+  font-size: 12px
+  font-weight: bold
+  color: $text
+
+.score-note
+  font-size: 12px
+  color: $text-light
+  line-height: 1.5
+
+.source-info
+  background: $light-bg
+  padding: 15px
+  font-size: 13px
+  color: $text-light
+
+// District Chart
+.district-chart
+  background: $white
+  padding: 20px
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06)
+
+.district-bar-row
+  display: flex
+  align-items: center
+  gap: 10px
+  margin-bottom: 8px
+
+.district-name
+  width: 200px
+  font-size: 13px
+  color: $text
+  text-align: right
+  flex-shrink: 0
+
+.district-bar-container
+  flex: 1
+  height: 24px
+  background: $light-bg
+
+.district-bar
+  height: 100%
+  background: $accent
+  color: $white
+  font-size: 11px
+  display: flex
+  align-items: center
+  padding-left: 8px
+  min-width: 60px
+  white-space: nowrap
+
+.district-count
+  width: 90px
+  font-size: 12px
+  color: $text-light
+
+// Criteria Form
+.criteria-form-page
+  max-width: 900px
+  margin: 0 auto
+  padding: 20px
+
+.criteria-form
+  margin-top: 20px
+
+.form-section
+  background: $white
+  padding: 25px
+  margin-bottom: 20px
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06)
+  h2
+    font-size: 18px
+    color: $primary
+    margin-bottom: 15px
+    padding-bottom: 8px
+    border-bottom: 2px solid $light-bg
+
+.form-row
+  display: flex
+  gap: 20px
+  flex-wrap: wrap
+  &.checkboxes
+    gap: 15px
+
+.form-group
+  flex: 1
+  min-width: 180px
+  margin-bottom: 10px
+  label
+    display: block
+    font-size: 12px
+    color: $text-light
+    margin-bottom: 5px
+  &.full-width
+    flex-basis: 100%
+  &.checkbox-group
+    display: flex
+    align-items: center
+    gap: 8px
+    min-width: 200px
+    label
+      margin-bottom: 0
+      font-size: 13px
+      color: $text
+
+.form-input
+  width: 100%
+  padding: 10px
+  border: 1px solid $border
+  font-size: 14px
+  transition: border-color 0.2s ease
+  box-sizing: border-box
+  &:focus
+    border-color: $accent
+    outline: none
+
+.form-checkbox
+  width: 18px
+  height: 18px
+  flex-shrink: 0
+
+.form-hint
+  font-size: 11px
+  color: lighten($text-light, 15%)
+  margin-top: 4px
+  display: block
+
+.form-errors
+  background: lighten($danger, 35%)
+  border: 1px solid $danger
+  padding: 15px
+  margin-bottom: 20px
+  color: darken($danger, 15%)
+  h3
+    font-size: 14px
+    margin-bottom: 8px
+  li
+    font-size: 13px
+
+.form-actions
+  display: flex
+  gap: 10px
+  padding: 20px 0
+
+// Empty State
+.empty-state
+  text-align: center
+  padding: 60px 20px
+  background: $white
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06)
+  h2
+    font-size: 22px
+    color: $primary
+    margin-bottom: 10px
+  p
+    color: $text-light
+    font-size: 14px
+    margin-bottom: 20px
+
+// Responsive
+@media (max-width: 768px)
+  .detail-grid
+    grid-template-columns: 1fr
+  .property-cards
+    grid-template-columns: 1fr
+  .stats-grid
+    flex-direction: column
+  .filter-form
+    flex-direction: column

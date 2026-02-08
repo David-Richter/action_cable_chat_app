@@ -1,0 +1,112 @@
+<div class="property-dashboard">
+  <div class="dashboard-header">
+    <h1>Berlin Immobilien-Screener</h1>
+    <p class="dashboard-subtitle">Automatische Bewertung von Mietangeboten in Berlin</p>
+    <div class="dashboard-actions">
+      <%= link_to 'Neues Screening starten', screen_properties_path, method: :post, class: 'btn btn-primary' %>
+      <%= link_to 'Suchkriterien anpassen', edit_search_criteria_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number"><%= @total %></div>
+      <div class="stat-label">Angebote gesamt</div>
+    </div>
+    <div class="stat-card stat-highlight">
+      <div class="stat-number"><%= @recommended.count %></div>
+      <div class="stat-label">Empfehlungen</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number"><%= @avg_score %></div>
+      <div class="stat-label">Durchschnittsscore</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number"><%= @avg_price %> &euro;</div>
+      <div class="stat-label">Durchschnittspreis</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number"><%= @avg_size %> m&sup2;</div>
+      <div class="stat-label">Durchschnittsgr&ouml;&szlig;e</div>
+    </div>
+  </div>
+
+  <% if @criteria %>
+  <div class="criteria-summary">
+    <h3>Aktive Suchkriterien</h3>
+    <div class="criteria-tags">
+      <% if @criteria.max_price.present? %>
+        <span class="tag">Max. <%= @criteria.max_price.round(0) %> &euro;/Monat</span>
+      <% end %>
+      <% if @criteria.min_rooms.present? %>
+        <span class="tag">Min. <%= @criteria.min_rooms %> Zimmer</span>
+      <% end %>
+      <% if @criteria.min_living_space.present? %>
+        <span class="tag">Min. <%= @criteria.min_living_space.round(0) %> m&sup2;</span>
+      <% end %>
+      <% if @criteria.preferred_districts_list.any? %>
+        <span class="tag">Bezirke: <%= @criteria.preferred_districts_list.join(', ') %></span>
+      <% end %>
+      <% if @criteria.require_balcony %>
+        <span class="tag">Balkon</span>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @top_properties.any? %>
+  <div class="section">
+    <div class="section-header">
+      <h2>Top 5 Angebote</h2>
+      <%= link_to 'Alle anzeigen &rarr;'.html_safe, properties_path(sort: 'score'), class: 'section-link' %>
+    </div>
+
+    <div class="property-cards">
+      <% @top_properties.each do |property| %>
+        <%= render 'properties/property_card', property: property %>
+      <% end %>
+    </div>
+  </div>
+  <% else %>
+  <div class="empty-state">
+    <h2>Noch keine Angebote</h2>
+    <p>Starte ein Screening, um Berliner Immobilienangebote zu laden und bewerten.</p>
+    <%= link_to 'Screening starten', screen_properties_path, method: :post, class: 'btn btn-primary' %>
+  </div>
+  <% end %>
+
+  <% if @recommended.any? %>
+  <div class="section">
+    <div class="section-header">
+      <h2>Empfohlene Angebote</h2>
+      <%= link_to 'Alle Empfehlungen &rarr;'.html_safe, recommended_properties_path, class: 'section-link' %>
+    </div>
+
+    <div class="property-cards">
+      <% @recommended.limit(6).each do |property| %>
+        <%= render 'properties/property_card', property: property %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @by_district.any? %>
+  <div class="section">
+    <h2>Durchschnittspreise nach Bezirk</h2>
+    <div class="district-chart">
+      <% @by_district.each do |district, avg_price| %>
+        <% next unless avg_price %>
+        <div class="district-bar-row">
+          <div class="district-name"><%= district %></div>
+          <div class="district-bar-container">
+            <div class="district-bar" style="width: <%= [(avg_price.to_f / 20.0 * 100), 100].min %>%">
+              <%= avg_price.round(2) %> &euro;/m&sup2;
+            </div>
+          </div>
+          <div class="district-count"><%= @district_counts[district] || 0 %> Angebote</div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
